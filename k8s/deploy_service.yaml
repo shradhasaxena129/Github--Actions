@@ -1,36 +1,32 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: demoapp
+  name: nashtech-application
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: demoapp
+      app: nashtech-application
   template:
     metadata:
       labels:
-        app: demoapp
+        app: nashtech-application
     spec:
       containers:
-        - name: demoapp
-          image: ghcr.io/username/myapp/myimage:latest
+        - name: nashtech-application
+          image: ghcr.io/deepak1067/myapp/myimage:latest
           ports:
             - containerPort: 8080
-          env:
-          # Add environment variables here, if needed
-          resources:
-          # Set resource limits and requests, if needed
       imagePullSecrets:
         - name: dockerconfigjson-github-com
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: demoapp-service
+  name: nashtech-application-service
 spec:
   selector:
-    app: demoapp
+    app: nashtech-application
   ports:
     - protocol: TCP
       port: 80
